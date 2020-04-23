@@ -1,35 +1,95 @@
+autoUpdate:
+  enabled: false
+  schedule: ""
+bootConfigURL: https://github.com/jenkins-x/jenkins-x-boot-config.git
 cluster:
-  clusterName: ""
-  environmentGitOwner: ""
-  environmentGitPublic: false
-  project: ""
+  clusterName: arcalos-staging-mgmt
+  devEnvApprovers:
+  - garethjevans
+  - macox
+  - apg84
+  - cagiti
+  environmentGitOwner: arcalos-management
+  environmentGitPublic: true
+  gitKind: github
+  gitName: github
+  gitPublic: true
+  gitServer: https://github.com
+  namespace: jx
+  project: arcalos-staging-mgmt
   provider: gke
-  zone: ""
-gitops: true
+  registry: gcr.io
+  vaultName: arcalos-staging-mgmt
+  vaultSAName: arcalos-staging-mgmt-vt
+  zone: us-central1-a
 environments:
-- key: dev
-- key: staging
-- key: production
+- ingress:
+    cloud_dns_secret_name: external-dns-gcp-sa
+    domain: mgmt.staging-jxaas.live
+    externalDNS: true
+    namespaceSubDomain: -jx.
+    tls:
+      email: operations+arcalos-admin-bot@googlegroups.com
+      enabled: true
+      production: true
+  key: dev
+  repository: environment-arcalos-staging-mgmt-dev
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: staging
+  repository: environment-arcalos-staging-mgmt-staging
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: production
+  repository: environment-arcalos-staging-mgmt-production
+gitops: true
 ingress:
-  domain: ""
-  externalDNS: false
+  cloud_dns_secret_name: external-dns-gcp-sa
+  domain: mgmt.staging-jxaas.live
+  externalDNS: true
+  namespaceSubDomain: -jx.
   tls:
-    email: ""
-    enabled: false
-    production: false
+    email: operations+arcalos-admin-bot@googlegroups.com
+    enabled: true
+    production: true
 kaniko: true
-secretStorage: local
+repository: nexus
+secretStorage: vault
 storage:
+  backup:
+    enabled: true
+    url: gs://arcalos-staging-mgmt-c9c4dc0c5f37-backup
   logs:
-    enabled: false
-    url: ""
+    enabled: true
+    url: gs://arcalos-staging-mgmt-7eb22cb113cd-lts
   reports:
     enabled: false
     url: ""
   repository:
     enabled: false
     url: ""
+vault:
+  bucket: arcalos-staging-mgmt-74a864210c15-vault
+  key: arcalos-staging-mgmt-crypto-key
+  keyring: arcalos-staging-mgmt-keyring
+  name: arcalos-staging-mgmt
+  serviceAccount: arcalos-staging-mgmt-vt
+velero:
+  schedule: ""
+  ttl: ""
 versionStream:
-  ref: "master"
+  ref: v1.0.431
   url: https://github.com/jenkins-x/jenkins-x-versions.git
 webhook: prow

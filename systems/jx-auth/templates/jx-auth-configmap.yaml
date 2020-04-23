@@ -1,1 +1,23 @@
-# This jx auth configmap will be generated from template
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: jx-auth-config
+  labels:
+    jenkins.io/created-by: jx
+    jenkins.io/config-type: auth
+data:
+  gitAuth.yaml: |
+    currentserver: "https://github.com"
+    defaultusername: "arcalos-admin-bot"
+    pipelineserver: "https://github.com"
+    pipelineusername: "arcalos-admin-bot"
+    servers:
+    - currentuser: "arcalos-admin-bot"
+      kind: "github"
+      name: "github"
+      url: "https://github.com"
+      users:
+      - apitoken: "vault:arcalos-staging-mgmt/pipelineUser:token"
+        bearertoken: ""
+        username: "arcalos-admin-bot"

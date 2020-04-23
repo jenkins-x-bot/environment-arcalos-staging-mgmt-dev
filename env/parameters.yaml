@@ -1,0 +1,10 @@
+adminUser:
+  password: vault:arcalos-staging-mgmt/adminUser:password
+  username: admin
+enableDocker: false
+pipelineUser:
+  email: operations+arcalos-admin-bot@googlegroups.com
+  token: vault:arcalos-staging-mgmt/pipelineUser:token
+  username: arcalos-admin-bot
+prow:
+  hmacToken: vault:arcalos-staging-mgmt/prow:hmacToken
