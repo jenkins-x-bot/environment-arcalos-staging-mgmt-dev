@@ -8,3 +8,9 @@ pipelineUser:
   username: arcalos-admin-bot
 prow:
   hmacToken: vault:arcalos-staging-mgmt/prow:hmacToken
+
+parentDNSZone: staging-jxaas-live-parent
+parentDomain: staging-jxaas.live
+parentProject: staging-arcalos-domain-name
+tenantFolderID: "610016331961"
+tenantServiceBasicAuth: vault:arcalos-staging-mgmt/jx-tenant-service/basic-auth:password

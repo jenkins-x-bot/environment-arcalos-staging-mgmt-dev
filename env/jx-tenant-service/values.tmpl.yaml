@@ -1,0 +1,35 @@
+replicaCount: 2
+parentDomain: {{ .Parameters.parentDomain }}
+parentProject: {{ .Parameters.parentProject}}
+parentDNSZone: {{ .Parameters.parentDNSZone}}
+basicAuthPassword: vault:arcalos-staging-mgmt/jx-tenant-service/basic-auth:password
+dbUser: vault:arcalos-staging-mgmt/jx-tenant-service/db-client:username
+dbPassword: vault:arcalos-staging-mgmt/jx-tenant-service/db-client:password
+dbInstance: vault:arcalos-staging-mgmt/jx-tenant-service/db-client:instance
+cloudSQLSA: vault:arcalos-staging-mgmt/jx-tenant-service/db-client:sa
+sa: vault:arcalos-staging-mgmt/aps-alpha/arcalos-prod-sa:json #not sure what this is used for
+saasSA: vault:arcalos-staging-mgmt/aps-alpha/arcalos-prod-sa:json
+cert: vault:arcalos-staging-mgmt/lighthouse-githubapp/cloudbees-cicd-staging:private-key
+id: vault:arcalos-staging-mgmt/lighthouse-githubapp/cloudbees-cicd-staging:app-id
+tenantFolderID: {{ .Parameters.tenantFolderID }}
+service:
+  serviceAnnotations:
+    fabric8.io/expose: "false"
+segmentWriteKey: vault:arcalos-staging-mgmt/monitoring/segment:write-key
+env:
+  BOT_NAME: cloudbees-ci-cd-staging[bot]
+  JX_FAIL_MISSING_SIGNATURE: true
+  GITHUB_APP_INSTALL_URL: https://github.com/apps/cloudbees-ci-cd-staging/installations/new
+  GITHUB_APP_NAME: "Cloudbees CI/CD Staging"
+
+updateController:
+  location: us-central1
+  env:
+    JX_LOG_LEVEL: "debug"
+    JX_LOG_FORMAT: "json"
+  saasSecret:
+    name: arcalos-alpha-prod-secret
+    key: arcalos_prod_sa
+
+updatejob:
+  enabled: false

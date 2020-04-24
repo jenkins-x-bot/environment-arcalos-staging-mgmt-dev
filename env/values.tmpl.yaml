@@ -1,3 +1,25 @@
+cluster:
+  ingress:
+    domain: {{ .Requirements.ingress.domain }}
+    namespaceSubDomain: {{ .Requirements.ingress.namespaceSubDomain | default "-jx." }}
+    tls:
+{{- if .Requirements.ingress.tls.enabled }}
+      enabled: true
+{{- if .Requirements.ingress.tls.production }}
+      production: true
+{{- end }}
+{{- end }}
+
+datadog:
+  apiKey: vault:arcalos-staging-mgmt/monitoring/datadog-app:apiKey
+  appKey: vault:arcalos-staging-mgmt/monitoring/datadog-app:appKey
+
+expose:
+  enabled: false
+
+gitops:
+  owner: {{ .Requirements.cluster.environmentGitOwner }}
+
 tekton:
 {{- if eq .Requirements.webhook "prow" }}
   enabled: true
@@ -6,6 +28,7 @@ tekton:
 {{- else }}
   enabled: false
 {{- end }}
+
 {{- if eq .Requirements.cluster.provider "openshift" }}
   rbac:
     cluster: false
@@ -60,8 +83,14 @@ jenkins-x-platform:
       create: false
 {{- end }}
 
-
-# Use cert-manager 0.11 CRDs/APIs with Dex
-dex:
-  certs:
-    newApi: true
+arcalosAlpha:
+  pipelineGithubUser: vault:arcalos-staging-mgmt/aps-alpha/arcalos:pipeline-github-user
+  pipelineGithubToken: vault:arcalos-staging-mgmt/aps-alpha/arcalos:pipeline-github-token
+  pipelineGithubEmail: vault:arcalos-staging-mgmt/aps-alpha/arcalos:pipeline-github-email
+  gitOwner: vault:arcalos-staging-mgmt/aps-alpha/arcalos:git-owner
+  ciSA: vault:arcalos-staging-mgmt/aps-alpha/arcalos-prod-sa:json
+  segmentWriteKey: vault:arcalos-staging-mgmt/monitoring/segment:write-key
+  runBootSchedule: "0 * * * *"
+  domainIssuerPassword: vault:arcalos-staging-mgmt/aps-alpha/arcalos:domain-issuer-password # pragma: allowlist secret
+  domainIssuerUsername: vault:arcalos-staging-mgmt/aps-alpha/arcalos:domain-issuer-username
+  domainIssuerUrl: "https://jx-tenant-service{{ .Requirements.ingress.namespaceSubDomain }}{{ .Requirements.ingress.domain }}"
