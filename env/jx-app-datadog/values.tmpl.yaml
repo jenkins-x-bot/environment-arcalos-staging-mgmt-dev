@@ -1,0 +1,35 @@
+datadog:
+  datadog:
+    apiKey: vault:arcalos-staging-mgmt/monitoring/datadog-app:apiKey
+    appKey: vault:arcalos-staging-mgmt/monitoring/datadog-app:appKey
+    clusterName: "{{ .Requirements.cluster.clusterName }}"
+    tags: env:staging clustername:{{ .Requirements.cluster.clusterName }}
+    nonLocalTraffic: true
+    collectEvents: true
+    leaderElection: true
+    logs:
+      enabled: true
+      containerCollectAll: true
+    apm:
+      enabled: true
+    processAgent:
+      enabled: false
+    acInclude: image:bash image:creds-init image:entrypoint image:git-init image:builder-jx image:jx-tenant-service
+    kubeStateMetrics:
+      enabled: false
+    resources:
+      requests:
+        cpu: 200m
+        memory: 256Mi
+      limits:
+        cpu: 300m
+        memory: 512Mi
+    confd:
+      etcd.yaml: |-
+        ad_identifiers:
+          - etcd
+        init_config:
+        instances:
+          - url: "https://metrics-server.kube-system/metrics"
+  daemonset:
+    useHostPort: true

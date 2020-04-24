@@ -10,6 +10,10 @@ cluster:
 {{- end }}
 {{- end }}
 
+datadog:
+  apiKey: vault:arcalos-staging-mgmt/monitoring/datadog-app:apiKey
+  appKey: vault:arcalos-staging-mgmt/monitoring/datadog-app:appKey
+
 gitops:
   owner: {{ .Requirements.cluster.environmentGitOwner }}
 
