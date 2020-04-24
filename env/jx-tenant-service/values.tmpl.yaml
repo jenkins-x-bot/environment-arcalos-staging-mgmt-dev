@@ -23,6 +23,7 @@ env:
   GITHUB_APP_NAME: "Cloudbees CI/CD Staging"
 
 updateController:
+  enabled: false
   location: us-central1
   env:
     JX_LOG_LEVEL: "debug"
