@@ -8,6 +8,11 @@ dependencies:
   condition: prow.enabled
   name: prow
   repository: http://chartmuseum.jenkins-x.io
+- alias: jx-app-kuberhealthy
+  condition: jx-app-kuberhealthy.enabled
+  name: jx-app-kuberhealthy
+  repository: https://storage.googleapis.com/chartmuseum.jenkins-x.io
+  version: 0.0.2
 - alias: lighthouse
   condition: lighthouse.enabled
   name: lighthouse
