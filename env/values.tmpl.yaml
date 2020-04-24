@@ -14,6 +14,9 @@ datadog:
   apiKey: vault:arcalos-staging-mgmt/monitoring/datadog-app:apiKey
   appKey: vault:arcalos-staging-mgmt/monitoring/datadog-app:appKey
 
+expose:
+  enabled: false
+
 gitops:
   owner: {{ .Requirements.cluster.environmentGitOwner }}
 
