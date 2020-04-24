@@ -60,8 +60,14 @@ jenkins-x-platform:
       create: false
 {{- end }}
 
-
-# Use cert-manager 0.11 CRDs/APIs with Dex
-dex:
-  certs:
-    newApi: true
+arcalosAlpha:
+  pipelineGithubUser: vault:arcalos-prod-mgmt/aps-alpha/arcalos:pipeline-github-user
+  pipelineGithubToken: vault:arcalos-prod-mgmt/aps-alpha/arcalos:pipeline-github-token
+  pipelineGithubEmail: vault:arcalos-prod-mgmt/aps-alpha/arcalos:pipeline-github-email
+  gitOwner: vault:arcalos-prod-mgmt/aps-alpha/arcalos:git-owner
+  ciSA: vault:arcalos-prod-mgmt/aps-alpha/arcalos-prod-sa:json
+  segmentWriteKey: vault:arcalos-prod-mgmt/monitoring/segment:write-key
+  runBootSchedule: "0 * * * *"
+  domainIssuerPassword: vault:arcalos-prod-mgmt/aps-alpha/arcalos:domain-issuer-password # pragma: allowlist secret
+  domainIssuerUsername: vault:arcalos-prod-mgmt/aps-alpha/arcalos:domain-issuer-username
+  domainIssuerUrl: "https://jx-tenant-service{{ .Requirements.ingress.namespaceSubDomain }}{{ .Requirements.ingress.domain }}"
