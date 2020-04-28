@@ -1,0 +1,17 @@
+{{- $prefix := regexFind "^[^.]+." .Requirements.ingress.domain }}
+{{- $rootDomain := trimPrefix $prefix .Requirements.ingress.domain }}
+jxui:
+  gcpSA: vault:arcalos-staging-mgmt/aps-alpha/arcalos-prod-sa:json
+  replicaCount: 2
+  skipExposeService: true
+  sso:
+    create: true
+    connector: arcalos
+  roxApiKey: vault:arcalos-staging-mgmt/feature-flag/rox:api-key
+  segmentWriteKey: vault:arcalos-staging-mgmt/monitoring/segment:write-key
+  service:
+    serviceAnnotations:
+      fabric8.io/expose: "false"
+      fabric8.io/exposeUrl: https://arcalosui{{ .Requirements.ingress.namespaceSubDomain }}{{ $rootDomain }}
+    backend:
+      initGcpServiceAccount: true
