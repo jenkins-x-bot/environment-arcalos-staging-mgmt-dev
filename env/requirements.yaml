@@ -21,7 +21,7 @@ dependencies:
   repository: http://chartmuseum.jenkins-x.io
 - name: jx-tenant-service
   repository: https://storage.googleapis.com/chartmuseum.jenkins-x.io
-  version: 0.0.664
+  version: 0.0.669
 - name: jx-app-datadog
   repository: https://storage.googleapis.com/chartmuseum.jenkins-x.io
   version: 1.0.2
