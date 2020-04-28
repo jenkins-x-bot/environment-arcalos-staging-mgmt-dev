@@ -96,6 +96,14 @@
         }
       }
     },
+    "dashboardAuthID": {
+      "type": "string",
+      "title": "Dashboard auth id"
+    },
+    "dashboardAuthSecret": {
+      "type": "string",
+      "title": "Dashboard auth secret"
+    },
     "parentDomain": {
       "type": "string",
       "title": "Registered domain the tenant service will use to create consumers"

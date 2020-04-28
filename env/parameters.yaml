@@ -1,6 +1,8 @@
 adminUser:
   password: vault:arcalos-staging-mgmt/adminUser:password
   username: admin
+dashboardAuthID: vault:arcalos-staging-mgmt/dashboard/auth:id
+dashboardAuthSecret: vault:arcalos-staging-mgmt/dashboard/auth:secret
 enableDocker: false
 pipelineUser:
   email: operations+arcalos-admin-bot@googlegroups.com
