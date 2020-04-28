@@ -1,3 +1,5 @@
+basicAuth: "{{ .Parameters.adminUser.username }}:{SHA}{{ .Parameters.tenantServiceBasicAuth | hashPassword }}"
+
 cluster:
   ingress:
     domain: {{ .Requirements.ingress.domain }}
