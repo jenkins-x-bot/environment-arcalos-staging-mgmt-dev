@@ -4,7 +4,7 @@ metadata:
   generation: 1
   name: ssos.jenkins.io
   annotations:
-    "helm.sh/hook": "crd-install"
+    helm.sh/hook: crd-install
 spec:
   additionalPrinterColumns:
   - JSONPath: .metadata.creationTimestamp
