@@ -1,3 +1,6 @@
+{{- $prefix := regexFind "^[^.]+." .Requirements.ingress.domain }}
+{{- $rootDomain := trimPrefix $prefix .Requirements.ingress.domain }}
+{{- $namespaceSubDomain := .Requirements.ingress.namespaceSubDomain | default "-jx." }}
 cluster:
   domain: {{ .Requirements.ingress.domain }}
   provider: {{ .Requirements.cluster.provider }}
@@ -12,9 +15,14 @@ cluster:
   region: ""
 {{- end }}
 
- {{- if .Requirements.ingress.tls }}
+{{- if .Requirements.ingress.tls }}
 certmanager:
   production: "{{ .Requirements.ingress.tls.production }}"
   email:  "{{ .Requirements.ingress.tls.email }}"
   enabled: {{ .Requirements.ingress.tls.enabled }}
 {{- end }}
+
+additionalSolvers:
+- domains:
+  - "dashboard.{{ $rootDomain }}"
+  projectID: staging-arcalos-domain-name

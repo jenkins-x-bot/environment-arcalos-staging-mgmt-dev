@@ -31,5 +31,23 @@ spec:
         route53:
           region: {{ .Values.cluster.region }}
 {{- end }}
+{{- if hasKey .Values "additionalSolvers" }}
+{{- range .Values.additionalSolvers }}
+    - selector:
+        dnsNames:
+{{- range .domains }}
+        - {{ . | quote }}
+{{- end }}
+      # ACME DNS-01 provider configurations
+      dns01:
+        clouddns:
+          # The project in which to update the DNS zone
+          project: "{{ .projectID }}"
+          # A secretKeyRef to a google cloud json service account
+          serviceAccountSecretRef:
+            name: external-dns-gcp-sa
+            key: credentials.json
+{{- end }}
+{{- end }}
 {{- end }}
 {{- end }}

@@ -13,5 +13,12 @@ spec:
   commonName: "*.{{ .Values.cluster.domain }}"
   dnsNames:
   - "*.{{ .Values.cluster.domain }}"
+{{- if hasKey .Values "additionalSolvers" }}
+{{- range .Values.additionalSolvers }}
+{{- range .domains }}
+  - {{ . | quote }}
+{{- end }}
+{{- end }}
+{{- end }}
 {{- end }}
 {{- end }}
