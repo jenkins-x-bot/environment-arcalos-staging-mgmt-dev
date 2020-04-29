@@ -6,6 +6,7 @@ jxui:
   skipExposeService: true
   sso:
     create: true
+    useSSOOperator: false
     connector: arcalos
   roxApiKey: vault:arcalos-staging-mgmt/feature-flag/rox:api-key
   segmentWriteKey: vault:arcalos-staging-mgmt/monitoring/segment:write-key
