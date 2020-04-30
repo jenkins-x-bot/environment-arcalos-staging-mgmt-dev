@@ -9,3 +9,6 @@ tenantService:
 replicaCount: 3
 
 debug: true
+
+env:
+  BOT_NAME: arcalos-staging[bot]
