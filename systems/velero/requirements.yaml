@@ -1,5 +1,5 @@
 dependencies:
-- condition: velero.enabled
-  alias: velero
+- alias: velero
+  condition: velero.enabled
   name: velero
   repository: https://kubernetes-charts.storage.googleapis.com
