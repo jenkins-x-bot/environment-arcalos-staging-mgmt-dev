@@ -22,6 +22,9 @@ expose:
 gitops:
   owner: {{ .Requirements.cluster.environmentGitOwner }}
 
+kuberhealthy:
+  basicAuth: vault:arcalos-staging-mgmt/kuberhealthy/basic-auth:enc
+
 tekton:
 {{- if eq .Requirements.webhook "prow" }}
   enabled: true
