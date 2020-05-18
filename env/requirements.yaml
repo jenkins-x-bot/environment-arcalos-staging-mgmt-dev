@@ -21,16 +21,16 @@ dependencies:
   repository: http://chartmuseum.jenkins-x.io
 - name: jx-tenant-service
   repository: https://storage.googleapis.com/chartmuseum.jenkins-x.io
-  version: 0.0.709
+  version: 0.0.721
 - name: jx-app-datadog
   repository: https://storage.googleapis.com/chartmuseum.jenkins-x.io
   version: 1.0.2
 - name: lighthouse-githubapp
   repository: https://storage.googleapis.com/chartmuseum.jenkins-x.io
-  version: 0.0.907
+  version: 0.0.934
 - name: jxui-arcalos
   repository: https://charts.cloudbees.com/cjxd/cloudbees
-  version: 0.0.1249
+  version: 0.0.1250
 - alias: oauth-proxy-jxui-frontend
   name: oauth2-proxy
   repository: https://kubernetes-charts.storage.googleapis.com/
