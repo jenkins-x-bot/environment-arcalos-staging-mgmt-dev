@@ -8,6 +8,7 @@ jxui:
     create: true
     useSSOOperator: false
     connector: arcalos
+    signOutURL: /oauth2/sign_out?rd=https%3A%2F%2Fid.beescloud.com%2Fv2%2Flogout
   roxApiKey: vault:arcalos-staging-mgmt/feature-flag/rox:api-key
   segmentWriteKey: vault:arcalos-staging-mgmt/monitoring/segment:write-key
   service:

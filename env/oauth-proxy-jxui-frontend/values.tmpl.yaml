@@ -19,6 +19,7 @@ extraArgs:
   skip-provider-button: true
   upstream: http://jxui:80/
   whitelist-domain: ".{{ $rootDomain }}"
+  whitelist-domain: id.beescloud.com
 image:
   repository: bitnami/oauth2-proxy
   tag: 5.1.0
