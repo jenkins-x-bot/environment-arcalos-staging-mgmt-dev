@@ -18,10 +18,10 @@ service:
 segmentWriteKey: vault:arcalos-staging-mgmt/monitoring/segment:write-key
 roxApiKey: vault:arcalos-staging-mgmt/feature-flag/rox:api-key
 env:
-  BOT_NAME: cloudbees-ci-cd-staging[bot]
+  BOT_NAME: cb-cloud-native-ci-cd-staging[bot]
   JX_FAIL_MISSING_SIGNATURE: true
-  GITHUB_APP_INSTALL_URL: https://github.com/apps/cloudbees-ci-cd-staging/installations/new
-  GITHUB_APP_NAME: "Cloudbees CI/CD Staging"
+  GITHUB_APP_INSTALL_URL: https://github.com/apps/cb-cloud-native-ci-cd-staging/installations/new
+  GITHUB_APP_NAME: "CB Cloud Native CI/CD Staging"
 
 updateController:
   enabled: true
