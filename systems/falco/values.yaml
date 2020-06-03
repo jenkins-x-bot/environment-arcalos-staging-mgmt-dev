@@ -1,0 +1,37 @@
+falco:
+  image:
+    tag: 0.23.0
+
+  podSecurityPolicy:
+    # Create a podSecurityPolicy
+    create: true
+
+  ebpf:
+    # Enable eBPF support for Falco
+    enabled: true
+
+  daemonset:
+    podAnnotations:
+      ad.datadoghq.com/falco.logs: "[{\"source\": \"falco\"}]"
+    
+  falco:
+    jsonOutput: true
+    
+    syscallEventDrops:
+      actions:  
+        # Ignore syscallEventDrops. See https://github.com/falcosecurity/falco/issues/669
+        - ignore
+
+  customRules:
+    arcalos_rules: |-
+      - rule: Terminal shell in container
+        desc: A shell was used as the entrypoint/exec point into a container with an attached terminal.
+        condition: >
+          spawned_process and container
+          and shell_procs and proc.tty != 0
+          and container_entrypoint
+        output: >
+          A shell was spawned in a container with an attached terminal (user=%user.name %container.info
+          shell=%proc.name parent=%proc.pname cmdline=%proc.cmdline terminal=%proc.tty container_id=%container.id image=%container.image.repository)
+        priority: CRITICAL
+        tags: [container, shell, mitre_execution]
