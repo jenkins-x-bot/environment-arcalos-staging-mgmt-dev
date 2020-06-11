@@ -4,6 +4,8 @@ jxui:
   gcpSA: vault:arcalos-staging-mgmt/aps-alpha/arcalos-prod-sa:json
   replicaCount: 2
   skipExposeService: true
+  auth:
+    type: sso
   sso:
     create: true
     useSSOOperator: false
