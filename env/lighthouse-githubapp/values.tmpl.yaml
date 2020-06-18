@@ -1,4 +1,3 @@
-saasSA: vault:arcalos-staging-mgmt/aps-alpha/arcalos-prod-sa:json
 cert: vault:arcalos-staging-mgmt/lighthouse-githubapp/cloudbees-cicd-staging:private-key
 id: vault:arcalos-staging-mgmt/lighthouse-githubapp/cloudbees-cicd-staging:app-id
 secret: vault:arcalos-staging-mgmt/lighthouse-githubapp/cloudbees-cicd-staging:webhook-secret
